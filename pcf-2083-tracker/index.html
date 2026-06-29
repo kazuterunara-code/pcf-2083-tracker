@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2083 PCFトラッカー</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root{
+  --bg:#0a0e14;
+  --surface:#11151d;
+  --surface-2:#161b26;
+  --surface-3:#1b2230;
+  --border:#232938;
+  --text:#e7eaf0;
+  --text-dim:#8890a0;
+  --text-faint:#565d6e;
+  --pos:#ff5c72;
+  --neg:#4fa8ff;
+  --radius:12px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-serif;min-height:100vh;}
+.app{max-width:880px;margin:0 auto;padding:24px 16px 48px;}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--text-faint);text-transform:uppercase;margin:0 0 6px;}
+h1{font-size:22px;font-weight:900;margin:0 0 2px;letter-spacing:-.01em;}
+.sub{font-size:13px;color:var(--text-dim);margin:0 0 18px;}
+.panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;margin-bottom:14px;}
+.controls-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
+.field{display:flex;flex-direction:column;gap:4px;}
+.field label{font-size:10.5px;color:var(--text-faint);font-family:'IBM Plex Mono',monospace;letter-spacing:.06em;}
+select{background:var(--surface-2);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:7px 10px;font-size:13px;font-family:'IBM Plex Mono',monospace;min-width:128px;}
+select:focus{outline:2px solid #5b4fc4;outline-offset:1px;}
+.btn{background:var(--surface-2);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:12.5px;font-weight:500;cursor:pointer;font-family:'Noto Sans JP',sans-serif;transition:background .15s,border-color .15s;}
+.btn:hover{background:var(--surface-3);border-color:#343c52;}
+.btn-ghost{background:transparent;border:1px solid var(--border);color:var(--text-faint);font-size:11.5px;padding:6px 10px;}
+.btn-ghost:hover{color:var(--text-dim);border-color:#343c52;}
+.spacer{flex:1;}
+.stats-row{display:flex;flex-wrap:wrap;gap:18px;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);}
+.stat{display:flex;flex-direction:column;gap:2px;}
+.stat .v{font-family:'IBM Plex Mono',monospace;font-size:15px;font-weight:600;}
+.stat .l{font-size:10.5px;color:var(--text-faint);}
+.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:11.5px;color:var(--text-dim);margin-bottom:14px;align-items:center;}
+.legend .sw{display:inline-flex;align-items:center;gap:6px;}
+.swatch{width:13px;height:13px;border-radius:3px;display:inline-block;}
+.sort-row{display:flex;gap:8px;margin-bottom:10px;}
+.sort-btn{background:var(--surface-2);border:1px solid var(--border);color:var(--text-dim);border-radius:7px;padding:6px 12px;font-size:12px;cursor:pointer;font-family:'Noto Sans JP',sans-serif;}
+.sort-btn.active{background:#5b4fc4;color:#fff;border-color:#5b4fc4;}
+.list{display:flex;flex-direction:column;gap:5px;}
+.row{display:grid;grid-template-columns:30px 56px minmax(0,1fr) 64px 200px;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;transition:background .12s;}
+.row:hover{background:var(--surface-2);}
+.row.out{opacity:.55;}
+.rank{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-faint);text-align:right;}
+.code{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--text-dim);}
+.name{font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:6px;}
+.badge{font-family:'IBM Plex Mono',monospace;font-size:9px;padding:1px 5px;border-radius:4px;letter-spacing:.04em;flex-shrink:0;}
+.badge.new{background:rgba(255,92,114,.18);color:var(--pos);}
+.badge.out-b{background:rgba(79,168,255,.18);color:var(--neg);}
+.weight{font-family:'IBM Plex Mono',monospace;font-size:13px;text-align:right;font-weight:500;}
+.bar-cell{display:flex;align-items:center;gap:8px;}
+.bar-track{flex:1;height:14px;background:var(--surface-2);border-radius:4px;overflow:hidden;position:relative;}
+.bar-fill{height:100%;border-radius:4px 0 0 4px;}
+.delta-chip{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;padding:2px 7px;border-radius:5px;text-align:center;min-width:58px;flex-shrink:0;}
+.empty{text-align:center;padding:48px 20px;color:var(--text-dim);}
+.empty .big{font-size:30px;margin-bottom:8px;}
+input[type=file]{display:none;}
+footer.note{margin-top:18px;font-size:11px;color:var(--text-faint);line-height:1.6;}
+.status-line{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-faint);margin-top:8px;}
+@media (max-width:560px){
+  .row{grid-template-columns:24px 48px minmax(0,1fr) 56px 110px;}
+  .delta-chip{min-width:44px;}
+  h1{font-size:18px;}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <p class="eyebrow">PCF WEEKLY TRACKER · 2083 · AUTO-UPDATED</p>
+  <h1>NF・日本成長株アクティブETF 組入銘柄トラッカー</h1>
+  <p class="sub">GitHub Actionsが毎営業日 16:00 JST 頃に東証PCFを自動取得し、このページが最新の増減を表示します。</p>
+
+  <div class="panel">
+    <div class="controls-row">
+      <div class="field">
+        <label>今回</label>
+        <select id="curSel"></select>
+      </div>
+      <div class="field">
+        <label>比較対象（前回）</label>
+        <select id="cmpSel"></select>
+      </div>
+      <div class="spacer"></div>
+      <button class="btn" id="refreshBtn">🔄 再取得</button>
+      <label class="btn btn-ghost" for="fileInput">手動で1件追加（一時表示）</label>
+      <input type="file" id="fileInput" accept=".csv" multiple>
+    </div>
+    <div class="stats-row" id="statsRow"></div>
+    <div class="status-line" id="statusLine"></div>
+  </div>
+
+  <div class="legend">
+    <span class="sw"><span class="swatch" style="background:linear-gradient(135deg,#1b2030,#cfc0ff);"></span>保有比率（濃いほど高比率）</span>
+    <span class="sw"><span class="swatch" style="background:var(--pos);"></span>増加</span>
+    <span class="sw"><span class="swatch" style="background:var(--neg);"></span>減少</span>
+  </div>
+
+  <div class="sort-row" id="sortRow">
+    <button class="sort-btn active" data-sort="weight">保有比率順</button>
+    <button class="sort-btn" data-sort="delta">増減順</button>
+  </div>
+
+  <div class="list" id="list"></div>
+  <div class="empty" id="emptyState" style="display:none;">
+    <div class="big">📄</div>
+    <div id="emptyMsg">data/history.json を読み込み中...</div>
+  </div>
+
+  <footer class="note">
+    ※ 銘柄名は判明分のみ日本語表記。未登録のコードは英語名のまま表示されます。<br>
+    ※ このページは静的サイトです。データの更新は GitHub Actions（.github/workflows/daily.yml）が担当します。「手動で1件追加」はその場限りの一時表示で、リポジトリには保存されません。
+  </footer>
+</div>
+
+<script>
+const JP_NAMES = {"1605":"INPEX","1812":"鹿島建設","1925":"大和ハウス工業","1944":"きんでん","2802":"味の素","285A":"キオクシアホールディングス","3064":"MonotaRO","3382":"セブン&アイ・ホールディングス","3563":"FOOD & LIFE COMPANIES","3891":"日本高度紙工業","4022":"ラサ工業","4061":"デンカ","4063":"信越化学工業","4403":"日油","4461":"第一工業製薬","4519":"中外製薬","4568":"第一三共","4613":"関西ペイント","4666":"パーク24","4684":"オービック","4686":"ジャストシステム","5334":"NITERRA（日本特殊陶業）","5631":"日本製鋼所","5802":"住友電気工業","5991":"日本発条","6005":"三浦工業","6055":"ジャパンマテリアル","6098":"リクルートホールディングス","6134":"FUJI","6146":"ディスコ","6301":"コマツ","6331":"三菱化工機","6361":"荏原製作所","6367":"ダイキン工業","6383":"ダイフク","6501":"日立製作所","6504":"富士電機","6702":"富士通","6758":"ソニーグループ","6762":"TDK","6845":"アズビル","6857":"アドバンテスト","6861":"キーエンス","6871":"日本マイクロニクス","6951":"日本電子","6954":"ファナック","6981":"村田製作所","7182":"ゆうちょ銀行","7202":"いすゞ自動車","7203":"トヨタ自動車","7366":"リタリコ","7532":"パン・パシフィック・インターナショナルホールディングス","7550":"ゼンショーホールディングス","7730":"マニー","7741":"HOYA","7747":"朝日インテック","7832":"バンダイナムコホールディングス","7846":"パイロットコーポレーション","7936":"アシックス","8001":"伊藤忠商事","8002":"丸紅","8015":"豊田通商","8035":"東京エレクトロン","8053":"住友商事","8111":"ゴールドウイン","8306":"三菱UFJフィナンシャル・グループ","8750":"第一生命ホールディングス","8766":"東京海上ホールディングス","8830":"住友不動産","9433":"KDDI","9697":"カプコン","9766":"コナミグループ","9830":"トラスコ中山","9983":"ファーストリテイリング","9984":"ソフトバンクグループ"};
+
+let snapshots = [];   // history.json から読み込んだ配列 + 一時追加分
+let sortMode = "weight";
+
+function splitCSVLine(line){
+  const out = [];
+  let cur = "", inQ = false;
+  for (let i=0;i<line.length;i++){
+    const ch = line[i];
+    if (ch === '"'){ inQ = !inQ; continue; }
+    if (ch === ',' && !inQ){ out.push(cur); cur=""; continue; }
+    cur += ch;
+  }
+  out.push(cur);
+  return out;
+}
+
+function parsePCFText(text){
+  const lines = text.split(/\r?\n/).filter(l => l.trim().length > 0);
+  const fundRow = splitCSVLine(lines[1]);
+  const cash = parseFloat(fundRow[2]);
+  const shares_outstanding = parseInt(fundRow[3], 10);
+  const fund_date = fundRow[4].trim();
+  const holdings = {};
+  let total_stock_value = 0;
+  for (let i = 3; i < lines.length; i++){
+    const r = splitCSVLine(lines[i]);
+    if (r.length < 7) continue;
+    const code = r[0].trim();
+    const name = r[1].trim();
+    const shares = parseFloat(r[5]);
+    const price = parseFloat(r[6]);
+    if (isNaN(shares) || isNaN(price)) continue;
+    const value = shares * price;
+    total_stock_value += value;
+    holdings[code] = { name, shares, price, value };
+  }
+  const total_fund_value = total_stock_value + cash;
+  Object.keys(holdings).forEach(code => {
+    holdings[code].weight_pct = holdings[code].value / total_fund_value * 100;
+  });
+  const cash_weight_pct = cash / total_fund_value * 100;
+  return { fund_date, cash, shares_outstanding, total_fund_value, cash_weight_pct, holdings, _manual: true };
+}
+
+function formatDate(d){
+  if (!d || d.length < 8) return d;
+  return `${d.slice(0,4)}/${d.slice(4,6)}/${d.slice(6,8)}`;
+}
+function jpName(code, fallback){ return JP_NAMES[code] || fallback; }
+
+function hexToRgb(hex){ const h = hex.replace('#',''); return [parseInt(h.slice(0,2),16), parseInt(h.slice(2,4),16), parseInt(h.slice(4,6),16)]; }
+function rgbToCss([r,g,b]){ return `rgb(${r},${g},${b})`; }
+function lerp(a,b,t){ return a + (b-a)*t; }
+function lerpColor(c1,c2,t){ const a=hexToRgb(c1), b=hexToRgb(c2); return rgbToCss([Math.round(lerp(a[0],b[0],t)),Math.round(lerp(a[1],b[1],t)),Math.round(lerp(a[2],b[2],t))]); }
+function magColor(t){
+  t = Math.max(0, Math.min(1, t));
+  if (t < 0.5) return lerpColor('#1b2030', '#5b4fc4', t/0.5);
+  return lerpColor('#5b4fc4', '#cfc0ff', (t-0.5)/0.5);
+}
+function deltaColor(delta, maxAbs){
+  if (delta === null || maxAbs === 0) return null;
+  const t = Math.min(1, Math.abs(delta) / maxAbs);
+  const neutral = '#1b2230';
+  return delta >= 0 ? lerpColor(neutral, '#ff5c72', t) : lerpColor(neutral, '#4fa8ff', t);
+}
+
+function populateSelects(){
+  const curSel = document.getElementById('curSel');
+  const cmpSel = document.getElementById('cmpSel');
+  const sorted = [...snapshots].sort((a,b)=> b.fund_date.localeCompare(a.fund_date));
+  curSel.innerHTML = sorted.map(s => `<option value="${s.fund_date}">${formatDate(s.fund_date)}${s._manual?' (手動)':''}</option>`).join('');
+  cmpSel.innerHTML = '<option value="">比較なし</option>' + sorted.map(s => `<option value="${s.fund_date}">${formatDate(s.fund_date)}${s._manual?' (手動)':''}</option>`).join('');
+  if (sorted.length > 0) curSel.value = sorted[0].fund_date;
+  if (sorted.length > 1) cmpSel.value = sorted[1].fund_date;
+}
+
+function getSnap(date){ return snapshots.find(s => s.fund_date === date) || null; }
+
+function buildRows(curSnap, cmpSnap){
+  const codes = new Set(Object.keys(curSnap.holdings));
+  if (cmpSnap) Object.keys(cmpSnap.holdings).forEach(c => codes.add(c));
+  const rows = [];
+  codes.forEach(code => {
+    const cur = curSnap.holdings[code] || null;
+    const cmp = cmpSnap ? (cmpSnap.holdings[code] || null) : null;
+    const weight = cur ? cur.weight_pct : 0;
+    const delta = cmpSnap ? (weight - (cmp ? cmp.weight_pct : 0)) : null;
+    const fallbackName = cur ? cur.name : (cmp ? cmp.name : code);
+    const status = cur ? (cmpSnap ? (cmp ? 'hold' : 'new') : 'hold') : 'out';
+    rows.push({ code, name: jpName(code, fallbackName), weight, delta, status });
+  });
+  return rows;
+}
+
+function render(){
+  const curDate = document.getElementById('curSel').value;
+  const cmpDate = document.getElementById('cmpSel').value;
+  const curSnap = getSnap(curDate);
+  const listEl = document.getElementById('list');
+  const emptyEl = document.getElementById('emptyState');
+  const statsEl = document.getElementById('statsRow');
+  document.getElementById('sortRow').style.display = curSnap ? 'flex' : 'none';
+
+  if (!curSnap){
+    listEl.innerHTML = '';
+    emptyEl.style.display = 'block';
+    statsEl.innerHTML = '';
+    return;
+  }
+  emptyEl.style.display = 'none';
+
+  const cmpSnap = cmpDate ? getSnap(cmpDate) : null;
+  let rows = buildRows(curSnap, cmpSnap);
+
+  if (sortMode === 'delta' && cmpSnap){
+    rows.sort((a,b) => (b.delta||0) - (a.delta||0));
+  } else {
+    rows.sort((a,b) => b.weight - a.weight);
+  }
+
+  const maxWeight = Math.max(...rows.map(r => r.weight), 0.0001);
+  const maxAbsDelta = cmpSnap ? Math.max(...rows.map(r => Math.abs(r.delta||0)), 0.0001) : 0;
+
+  let rank = 0;
+  listEl.innerHTML = rows.map(r => {
+    if (r.status !== 'out') rank++;
+    const barColor = magColor(r.weight / maxWeight);
+    const barWidth = Math.max(1.5, (r.weight / maxWeight) * 100);
+    const badge = r.status === 'new' ? '<span class="badge new">NEW</span>' : (r.status === 'out' ? '<span class="badge out-b">OUT</span>' : '');
+    let deltaHtml;
+    if (cmpSnap){
+      const d = r.delta;
+      const dCol = deltaColor(d, maxAbsDelta);
+      const sign = d > 0 ? '+' : '';
+      deltaHtml = `<span class="delta-chip" style="background:${dCol};color:#fff;">${sign}${d.toFixed(2)}pt</span>`;
+    } else {
+      deltaHtml = `<span class="delta-chip" style="background:var(--surface-2);color:var(--text-faint);">—</span>`;
+    }
+    return `
+      <div class="row ${r.status === 'out' ? 'out' : ''}">
+        <div class="rank">${r.status === 'out' ? '' : rank}</div>
+        <div class="code">${r.code}</div>
+        <div class="name">${r.name}${badge}</div>
+        <div class="weight">${r.weight.toFixed(2)}%</div>
+        <div class="bar-cell">
+          <div class="bar-track"><div class="bar-fill" style="width:${barWidth}%;background:${barColor};"></div></div>
+          ${deltaHtml}
+        </div>
+      </div>`;
+  }).join('');
+
+  statsEl.innerHTML = `
+    <div class="stat"><div class="v">${Object.keys(curSnap.holdings).length}</div><div class="l">組入銘柄数</div></div>
+    <div class="stat"><div class="v">${curSnap.cash_weight_pct.toFixed(2)}%</div><div class="l">現金比率</div></div>
+    <div class="stat"><div class="v">${(curSnap.total_fund_value/1e8).toFixed(2)}億円</div><div class="l">純資産総額（概算）</div></div>
+    <div class="stat"><div class="v">${snapshots.length}</div><div class="l">保存済みスナップショット</div></div>
+  `;
+}
+
+async function loadHistory(){
+  const statusEl = document.getElementById('statusLine');
+  try{
+    const res = await fetch('./data/history.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    const manual = snapshots.filter(s => s._manual);
+    snapshots = data.concat(manual);
+    statusEl.textContent = `data/history.json を読み込みました（${data.length}件） / 最終確認: ${new Date().toLocaleString('ja-JP')}`;
+  }catch(e){
+    console.error(e);
+    statusEl.textContent = 'history.json の読み込みに失敗しました。GitHub Actionsがまだ1回も実行されていない可能性があります。';
+    document.getElementById('emptyMsg').textContent = 'まだデータがありません。GitHub Actionsの初回実行をお待ちください（Actionsタブから手動実行も可能です）。';
+  }
+  populateSelects();
+  render();
+}
+
+document.getElementById('curSel').addEventListener('change', render);
+document.getElementById('cmpSel').addEventListener('change', render);
+document.getElementById('refreshBtn').addEventListener('click', loadHistory);
+document.querySelectorAll('.sort-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    sortMode = btn.dataset.sort;
+    document.querySelectorAll('.sort-btn').forEach(b => b.classList.toggle('active', b === btn));
+    render();
+  });
+});
+document.getElementById('fileInput').addEventListener('change', async (e) => {
+  const files = Array.from(e.target.files || []);
+  for (const file of files){
+    const text = await file.text();
+    try{
+      const snap = parsePCFText(text);
+      snapshots = snapshots.filter(s => s.fund_date !== snap.fund_date);
+      snapshots.push(snap);
+    }catch(err){
+      alert('CSVの解析に失敗しました: ' + err.message);
+    }
+  }
+  populateSelects();
+  render();
+  e.target.value = '';
+});
+
+loadHistory();
+</script>
+</body>
+</html>
