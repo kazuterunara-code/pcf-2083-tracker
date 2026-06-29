@@ -1,0 +1,42 @@
+name: Update PCF history (2083)
+
+on:
+  schedule:
+    # 07:00 UTC = 16:00 JST（平日のみ）。PCFは7:50-23:55 JSTに配信されるため、
+    # 取引時間終了後の余裕を持ったタイミングに設定しています。
+    - cron: "0 7 * * 1-5"
+  workflow_dispatch: {}
+    # ↑ Actionsタブから「Run workflow」で手動実行できるようにするための設定（動作確認用）
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Fetch latest PCF and update history
+        run: python scripts/fetch_and_update.py
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "pcf-tracker-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/history.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Update PCF history $(date -u +'%Y-%m-%d')"
+            git push
+          fi
