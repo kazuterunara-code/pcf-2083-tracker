@@ -2,9 +2,9 @@ name: Update PCF history (2083)
 
 on:
   schedule:
-    # 07:00 UTC = 16:00 JST（平日のみ）。PCFは7:50-23:55 JSTに配信されるため、
-    # 取引時間終了後の余裕を持ったタイミングに設定しています。
-    - cron: "0 7 * * 1-5"
+    # 06:50 UTC = 15:50 JST（平日のみ）。毎時0分ちょうどはGitHub Actions全体が
+    # 混雑し実行がスキップされやすいため、キリの悪い時刻にずらしています。
+    - cron: "50 6 * * 1-5"
   workflow_dispatch: {}
     # ↑ Actionsタブから「Run workflow」で手動実行できるようにするための設定（動作確認用）
 
