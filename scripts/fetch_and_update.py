@@ -24,13 +24,16 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 HISTORY_PATH = os.path.join(SCRIPT_DIR, "..", "data", "history.json")
 
 HEADERS = {
-    # 一部のサーバーはデフォルトのUser-Agentだとブロックすることがあるため、
-    # 通常のブラウザに近いヘッダーを送る。
     "User-Agent": (
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-        "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/124.0.0.0 Safari/537.36"
     ),
-    "Accept": "text/csv,*/*",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "ja,en-US;q=0.9,en;q=0.8",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Referer": "https://inav.ice.com/tse/iopv/table?language=jp",
+    "Connection": "keep-alive",
 }
 
 
