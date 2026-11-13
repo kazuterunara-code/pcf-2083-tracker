@@ -47035,5 +47035,512 @@
       }
     },
     "fetched_at": "2026-11-12T07:50:30+00:00"
+  },
+  {
+    "fund_date": "20261113",
+    "cash": 142359649.0,
+    "shares_outstanding": 1036000,
+    "total_fund_value": 3932548429.0,
+    "cash_weight_pct": 3.6200354953085814,
+    "holdings": {
+      "1605": {
+        "name": "INPEX CORPORATION",
+        "shares": 16000.0,
+        "price": 3642.0,
+        "value": 58272000.0,
+        "weight_pct": 1.4817872189514998
+      },
+      "1812": {
+        "name": "KAJIMA CORP",
+        "shares": 19000.0,
+        "price": 4929.0,
+        "value": 93651000.0,
+        "weight_pct": 2.381432846684976
+      },
+      "1925": {
+        "name": "DAIWA HOUSE INDS",
+        "shares": 11700.0,
+        "price": 2392.5,
+        "value": 27992250.0,
+        "weight_pct": 0.7118094158377114
+      },
+      "1944": {
+        "name": "KINDEN CORP",
+        "shares": 13400.0,
+        "price": 5919.0,
+        "value": 79314600.0,
+        "weight_pct": 2.016875352763774
+      },
+      "285A": {
+        "name": "KIOXIA HLDGS CORP",
+        "shares": 26900.0,
+        "price": 9300.0,
+        "value": 250170000.0,
+        "weight_pct": 6.361523691740402
+      },
+      "2875": {
+        "name": "TOYO SUISAN KAISHA",
+        "shares": 300.0,
+        "price": 10505.0,
+        "value": 3151500.0,
+        "weight_pct": 0.08013887322428699
+      },
+      "3038": {
+        "name": "KOBE BUSSAN CO LTD",
+        "shares": 17100.0,
+        "price": 3141.0,
+        "value": 53711100.0,
+        "weight_pct": 1.3658089905241952
+      },
+      "3064": {
+        "name": "MONOTARO CO.LTD",
+        "shares": 110300.0,
+        "price": 2409.5,
+        "value": 265767850.0,
+        "weight_pct": 6.758158349434024
+      },
+      "3563": {
+        "name": "FOOD & LIFE COMPAN",
+        "shares": 5500.0,
+        "price": 5771.0,
+        "value": 31740500.0,
+        "weight_pct": 0.8071229273601401
+      },
+      "3774": {
+        "name": "INTERNET INITIATIV",
+        "shares": 6400.0,
+        "price": 4062.0,
+        "value": 25996800.0,
+        "weight_pct": 0.6610675105305868
+      },
+      "3891": {
+        "name": "NIPPON KODOSHI",
+        "shares": 6300.0,
+        "price": 5700.0,
+        "value": 35910000.0,
+        "weight_pct": 0.9131483222224802
+      },
+      "4022": {
+        "name": "RASA INDUSTRIES",
+        "shares": 31100.0,
+        "price": 1377.0,
+        "value": 42824700.0,
+        "weight_pct": 1.0889808675767487
+      },
+      "4063": {
+        "name": "SHIN-ETSU CHEMICAL",
+        "shares": 4600.0,
+        "price": 5791.0,
+        "value": 26638600.0,
+        "weight_pct": 0.6773877164120233
+      },
+      "4403": {
+        "name": "NOF CORP",
+        "shares": 22000.0,
+        "price": 2579.0,
+        "value": 56738000.0,
+        "weight_pct": 1.4427794348721548
+      },
+      "4519": {
+        "name": "CHUGAI PHARM CO",
+        "shares": 11900.0,
+        "price": 7148.0,
+        "value": 85061200.0,
+        "weight_pct": 2.1630045131225515
+      },
+      "4543": {
+        "name": "TERUMO CORP",
+        "shares": 7500.0,
+        "price": 2558.0,
+        "value": 19185000.0,
+        "weight_pct": 0.4878515890236224
+      },
+      "4568": {
+        "name": "DAIICHI SANKYO COM",
+        "shares": 18300.0,
+        "price": 2857.5,
+        "value": 52292250.0,
+        "weight_pct": 1.329729333131119
+      },
+      "4661": {
+        "name": "ORIENTAL LAND CO",
+        "shares": 6300.0,
+        "price": 3757.0,
+        "value": 23669100.0,
+        "weight_pct": 0.6018768853666417
+      },
+      "4666": {
+        "name": "PARK 24 CO LTD",
+        "shares": 6800.0,
+        "price": 1850.0,
+        "value": 12580000.0,
+        "weight_pct": 0.3198943440144472
+      },
+      "4684": {
+        "name": "OBIC CO LTD",
+        "shares": 24500.0,
+        "price": 6031.0,
+        "value": 147759500.0,
+        "weight_pct": 3.7573472435932205
+      },
+      "4686": {
+        "name": "JUSTSYSTEMS CORP",
+        "shares": 1600.0,
+        "price": 4700.0,
+        "value": 7520000.0,
+        "weight_pct": 0.19122459991960597
+      },
+      "4919": {
+        "name": "MILBON CO LTD",
+        "shares": 16300.0,
+        "price": 3365.0,
+        "value": 54849500.0,
+        "weight_pct": 1.3947571400652166
+      },
+      "5076": {
+        "name": "INFRONEER HLDGS IN",
+        "shares": 8300.0,
+        "price": 2362.5,
+        "value": 19608750.0,
+        "weight_pct": 0.49862704437148586
+      },
+      "5101": {
+        "name": "YOKOHAMA RUBBER CO",
+        "shares": 7000.0,
+        "price": 7153.0,
+        "value": 50071000.0,
+        "weight_pct": 1.27324560406577
+      },
+      "5334": {
+        "name": "NITERRA CO LTD",
+        "shares": 9300.0,
+        "price": 3894.0,
+        "value": 36214200.0,
+        "weight_pct": 0.9208837641500791
+      },
+      "5423": {
+        "name": "TOKYO STEEL MFG",
+        "shares": 18200.0,
+        "price": 1772.0,
+        "value": 32250400.0,
+        "weight_pct": 0.8200890741020292
+      },
+      "5631": {
+        "name": "JAPAN STEEL WORKS",
+        "shares": 14000.0,
+        "price": 5920.0,
+        "value": 82880000.0,
+        "weight_pct": 2.1075392076245936
+      },
+      "5803": {
+        "name": "FUJIKURA",
+        "shares": 33100.0,
+        "price": 3002.0,
+        "value": 99366200.0,
+        "weight_pct": 2.5267635426238764
+      },
+      "5991": {
+        "name": "NHK SPRING CO LTD",
+        "shares": 9300.0,
+        "price": 2775.5,
+        "value": 25812150.0,
+        "weight_pct": 0.6563720820232523
+      },
+      "6005": {
+        "name": "MIURA CO LTD",
+        "shares": 12900.0,
+        "price": 3025.0,
+        "value": 39022500.0,
+        "weight_pct": 0.992295472122716
+      },
+      "6055": {
+        "name": "JAPAN MATERIAL CO",
+        "shares": 7200.0,
+        "price": 1844.0,
+        "value": 13276800.0,
+        "weight_pct": 0.3376131340708277
+      },
+      "6088": {
+        "name": "SIGMAXYZ HOLDINGS",
+        "shares": 20900.0,
+        "price": 639.0,
+        "value": 13355100.0,
+        "weight_pct": 0.3396042093598843
+      },
+      "6098": {
+        "name": "RECRUIT HLDGS CO L",
+        "shares": 7300.0,
+        "price": 16715.0,
+        "value": 122019500.0,
+        "weight_pct": 3.102809849719463
+      },
+      "6134": {
+        "name": "FUJI CORPORATION",
+        "shares": 800.0,
+        "price": 5041.0,
+        "value": 4032800.0,
+        "weight_pct": 0.10254927746752487
+      },
+      "6146": {
+        "name": "DISCO CORPORATION",
+        "shares": 100.0,
+        "price": 47370.0,
+        "value": 4737000.0,
+        "weight_pct": 0.12045624066744327
+      },
+      "6301": {
+        "name": "KOMATSU",
+        "shares": 1100.0,
+        "price": 6243.0,
+        "value": 6867300.0,
+        "weight_pct": 0.17462722008349868
+      },
+      "6361": {
+        "name": "EBARA CORP",
+        "shares": 9200.0,
+        "price": 3647.0,
+        "value": 33552400.0,
+        "weight_pct": 0.8531973758434291
+      },
+      "6367": {
+        "name": "DAIKIN INDUSTRIES",
+        "shares": 1500.0,
+        "price": 23245.0,
+        "value": 34867500.0,
+        "weight_pct": 0.8866387949064976
+      },
+      "6480": {
+        "name": "NIPPON THOMPSON CO",
+        "shares": 13600.0,
+        "price": 1399.0,
+        "value": 19026400.0,
+        "weight_pct": 0.4838185808391478
+      },
+      "6501": {
+        "name": "HITACHI",
+        "shares": 31600.0,
+        "price": 4981.0,
+        "value": 157399600.0,
+        "weight_pct": 4.002483449136437
+      },
+      "6504": {
+        "name": "FUJI ELECTRIC CO.",
+        "shares": 1900.0,
+        "price": 11620.0,
+        "value": 22078000.0,
+        "weight_pct": 0.561417116625673
+      },
+      "6702": {
+        "name": "FUJITSU",
+        "shares": 20300.0,
+        "price": 3550.0,
+        "value": 72065000.0,
+        "weight_pct": 1.832526701224256
+      },
+      "6758": {
+        "name": "SONY GROUP CORPORA",
+        "shares": 27600.0,
+        "price": 4281.0,
+        "value": 118155600.0,
+        "weight_pct": 3.004555497109175
+      },
+      "6762": {
+        "name": "TDK CORP",
+        "shares": 27300.0,
+        "price": 2337.0,
+        "value": 63800100.0,
+        "weight_pct": 1.622360185815273
+      },
+      "6845": {
+        "name": "AZBIL CORP",
+        "shares": 6700.0,
+        "price": 1547.0,
+        "value": 10364900.0,
+        "weight_pct": 0.26356700208866013
+      },
+      "6857": {
+        "name": "ADVANTEST CORP",
+        "shares": 100.0,
+        "price": 29985.0,
+        "value": 2998500.0,
+        "weight_pct": 0.0762482663376248
+      },
+      "6861": {
+        "name": "KEYENCE CORP",
+        "shares": 1900.0,
+        "price": 75030.0,
+        "value": 142557000.0,
+        "weight_pct": 3.625053895045115
+      },
+      "6951": {
+        "name": "JEOL LTD",
+        "shares": 300.0,
+        "price": 6680.0,
+        "value": 2004000.0,
+        "weight_pct": 0.05095932157432053
+      },
+      "6954": {
+        "name": "FANUC CORP",
+        "shares": 17100.0,
+        "price": 5521.0,
+        "value": 94409100.0,
+        "weight_pct": 2.4007104223763394
+      },
+      "6961": {
+        "name": "ENPLAS CORP",
+        "shares": 1300.0,
+        "price": 8540.0,
+        "value": 11102000.0,
+        "weight_pct": 0.2823105729132268
+      },
+      "6981": {
+        "name": "MURATA MFG CO",
+        "shares": 23300.0,
+        "price": 5224.0,
+        "value": 121719200.0,
+        "weight_pct": 3.095173580124269
+      },
+      "7202": {
+        "name": "ISUZU MOTORS",
+        "shares": 41600.0,
+        "price": 2276.5,
+        "value": 94702400.0,
+        "weight_pct": 2.408168690349268
+      },
+      "7203": {
+        "name": "TOYOTA MOTOR CORP",
+        "shares": 79300.0,
+        "price": 3408.0,
+        "value": 270254400.0,
+        "weight_pct": 6.872245946344835
+      },
+      "7532": {
+        "name": "PAN PACIFIC INTL H",
+        "shares": 5600.0,
+        "price": 770.0,
+        "value": 4312000.0,
+        "weight_pct": 0.10964899931560385
+      },
+      "7550": {
+        "name": "ZENSHO HOLDINGS",
+        "shares": 3400.0,
+        "price": 12555.0,
+        "value": 42687000.0,
+        "weight_pct": 1.0854793213787528
+      },
+      "7730": {
+        "name": "MANI INC",
+        "shares": 27400.0,
+        "price": 1510.0,
+        "value": 41374000.0,
+        "weight_pct": 1.052091302802364
+      },
+      "7741": {
+        "name": "HOYA CORP",
+        "shares": 1700.0,
+        "price": 24090.0,
+        "value": 40953000.0,
+        "weight_pct": 1.041385776663248
+      },
+      "7936": {
+        "name": "ASICS CORP",
+        "shares": 16600.0,
+        "price": 4880.0,
+        "value": 81008000.0,
+        "weight_pct": 2.0599364880701385
+      },
+      "8001": {
+        "name": "ITOCHU CORP",
+        "shares": 17900.0,
+        "price": 2412.5,
+        "value": 43183750.0,
+        "weight_pct": 1.0981110793588145
+      },
+      "8015": {
+        "name": "TOYOTA TSUSHO CORP",
+        "shares": 4100.0,
+        "price": 6820.0,
+        "value": 27962000.0,
+        "weight_pct": 0.7110401945414924
+      },
+      "8035": {
+        "name": "TOKYO ELECTRON",
+        "shares": 7200.0,
+        "price": 9304.0,
+        "value": 66988800.0,
+        "weight_pct": 1.7034450105178858
+      },
+      "8053": {
+        "name": "SUMITOMO CORP",
+        "shares": 12100.0,
+        "price": 1751.0,
+        "value": 21187100.0,
+        "weight_pct": 0.5387625958718995
+      },
+      "8111": {
+        "name": "GOLDWIN INC",
+        "shares": 5000.0,
+        "price": 2229.0,
+        "value": 11145000.0,
+        "weight_pct": 0.28340401145000116
+      },
+      "8306": {
+        "name": "MITSUBISHI UFJ FIN",
+        "shares": 1200.0,
+        "price": 3498.0,
+        "value": 4197600.0,
+        "weight_pct": 0.1067399442317205
+      },
+      "8750": {
+        "name": "DAIICHI LIFE GP",
+        "shares": 9000.0,
+        "price": 1861.0,
+        "value": 16749000.0,
+        "weight_pct": 0.4259070244751969
+      },
+      "8766": {
+        "name": "TOKIO MARINE HLDG",
+        "shares": 33100.0,
+        "price": 593.8,
+        "value": 19654780.0,
+        "weight_pct": 0.49979753218189804
+      },
+      "8830": {
+        "name": "SUMITOMO RLTY&DEV",
+        "shares": 4900.0,
+        "price": 3545.0,
+        "value": 17370500.0,
+        "weight_pct": 0.4417110256520632
+      },
+      "9766": {
+        "name": "KONAMI GROUP CORP",
+        "shares": 200.0,
+        "price": 28650.0,
+        "value": 5730000.0,
+        "weight_pct": 0.14570704222597636
+      },
+      "9830": {
+        "name": "TRUSCO NAKAYAMA",
+        "shares": 7100.0,
+        "price": 2486.0,
+        "value": 17650600.0,
+        "weight_pct": 0.448833633423005
+      },
+      "9983": {
+        "name": "FAST RETAILING CO",
+        "shares": 200.0,
+        "price": 80190.0,
+        "value": 16038000.0,
+        "weight_pct": 0.407827145413649
+      },
+      "9984": {
+        "name": "SOFTBANK GROUP CO",
+        "shares": 9800.0,
+        "price": 3738.0,
+        "value": 36632400.0,
+        "weight_pct": 0.931518089640289
+      }
+    },
+    "fetched_at": "2026-11-13T07:50:29+00:00"
   }
 ]
